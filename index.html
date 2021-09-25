@@ -10,9 +10,43 @@
 </head>
 
 <body>
-	<canvas id="chart" style="width: 100%; height: 200px; background: lightgray"></canvas>
+	<h1>Move your mouse cursor in the big gray rectangle.</h1>
+	<canvas id="mouse-canvas" style="display: block; margin: 3px; width: 640px; height: 480px; background: lightgray"></canvas>
+	<canvas id="hist-x-canvas" style="width: 320px; height: 240px; background: lightgray"></canvas>
+	<canvas id="hist-y-canvas" style="width: 320px; height: 240px; background: lightgray"></canvas>
 	<script>
+		// Create a histogram for each mouse axis.
+		let histogramX = new buckety.Histogram(20);
+		let histogramY = new buckety.Histogram(20);
 
+		// Detect mouse movement on the first canvas, use coordinates as input
+		// for histogram.		
+		let mouseX = 0, mouseY = 0;
+		let mouseCanvas = document.querySelector("#mouse-canvas");
+		mouseCanvas.addEventListener("mousemove", e => {
+			histogramX.addSample(e.offsetX);
+			histogramY.addSample(e.offsetY);
+
+			if (mouseCanvas.width != mouseCanvas.clientWidth || mouseCanvas.height != mouseCanvas.clientHeight) {
+				mouseCanvas.width = mouseCanvas.clientWidth;
+				mouseCanvas.height = mouseCanvas.clientHeight;
+			}
+			let ctx = mouseCanvas.getContext("2d");
+			ctx.fillStyle = "red";
+			ctx.fillRect(e.offsetX, e.offsetY, 2, 2);
+		});
+
+		// Create the histogram charts for each mouse axis.
+		let histogramXChart = new buckety.HistogramChart(document.querySelector("#hist-x-canvas"), { histogram: histogramX });
+		let histogramYChart = new buckety.HistogramChart(document.querySelector("#hist-y-canvas"), { histogram: histogramY });
+
+		// Update the histograms and their charts every frame.
+		let update = () => {
+			requestAnimationFrame(update);
+			histogramXChart.render();
+			histogramYChart.render();
+		}
+		update();
 	</script>
 </body>
 
