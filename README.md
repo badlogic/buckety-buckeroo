@@ -12,7 +12,7 @@ The implementation is based on the paper [Streaming Parallel Decision Trees](htt
 # Usage
 You can include `buckety-buckeroo` directly on your page via.
 ```
-<script src="https://cdn.jsdelivr.net/npm/@marioslab/buckety-buckeroo@1.0.0/dist/iife/buckety-buckero.min.js">
+<script src="https://cdn.jsdelivr.net/npm/@marioslab/buckety-buckeroo@1.0.1/dist/iife/buckety-buckero.min.js">
 ```
 
 Every function and "class" is exposed on the global `buckety` object.
