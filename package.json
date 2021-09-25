@@ -1,6 +1,6 @@
 {
   "name": "@marioslab/buckety-buckeroo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Streaming histogram library.",
   "main": "index.js",
   "types": "index.d.ts",

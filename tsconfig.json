@@ -3,6 +3,7 @@
     "target": "es6",
     "module": "ES2015",
     "sourceMap": true,
+    "inlineSources": true,
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -10,5 +11,8 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false
-  }
+  },
+  "files": [
+    "index.ts"
+  ]
 }
